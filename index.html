@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Wisata Indonesia</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f1f8f5;
+            font-family: Arial, sans-serif;
+            color: #263238;
+        }
+
+        header {
+            background: #00695c;
+            color: white;
+            text-align: center;
+            padding: 24px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        nav {
+            background: #004d40;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            background: #00897b;
+        }
+
+        .halaman {
+            display: none;
+            padding-bottom: 25px;
+        }
+
+        .halaman.aktif {
+            display: block;
+        }
+
+        .hero {
+            min-height: 430px;
+            background:
+                linear-gradient(
+                    rgba(0, 50, 45, 0.55),
+                    rgba(0, 50, 45, 0.55)
+                ),
+                url("https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1400")
+                center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 35px 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(30px, 5vw, 48px);
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto 22px;
+        }
+
+        .tombol {
+            display: inline-block;
+            border: none;
+            border-radius: 7px;
+            padding: 12px 20px;
+            background: #00897b;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .tombol:hover {
+            background: #004d40;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .judul {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .judul h2 {
+            color: #00695c;
+            margin-bottom: 8px;
+        }
+
+        .judul p {
+            line-height: 1.7;
+        }
+
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .kartu {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .kartu img {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .kartu:hover img {
+            transform: scale(1.04);
+        }
+
+        .isi-kartu {
+            padding: 16px;
+        }
+
+        .isi-kartu h3 {
+            margin-top: 0;
+            color: #00695c;
+        }
+
+        .isi-kartu p {
+            line-height: 1.6;
+        }
+
+        .media-box {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+
+        .media-box audio {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .media-box video {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 8px;
+        }
+
+        .video-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .tabel-scroll {
+            overflow-x: auto;
+            background: white;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #d6e3df;
+            padding: 12px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            background: #b2dfdb;
+        }
+
+        .tabel-scroll img {
+            width: 150px;
+            max-width: 100%;
+            border-radius: 6px;
+        }
+
+        a {
+            color: #00796b;
+        }
+
+        footer {
+            background: #004d40;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            line-height: 1.8;
+        }
+
+        .kembali-atas {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        @media (max-width: 700px) {
+            .galeri {
+                grid-template-columns: 1fr;
+            }
+
+            .video-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 350px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            nav {
+                gap: 3px;
+            }
+
+            nav a {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>PESONA WISATA INDONESIA</h1>
+        <p>Jelajahi Keindahan Alam Nusantara</p>
+    </header>
+
+    <!-- NAVIGASI -->
+    <nav>
+        <a href="#beranda" onclick="tampilHalaman('beranda'); return false;">
+            Beranda
+        </a>
+
+        <a href="#destinasi" onclick="tampilHalaman('destinasi'); return false;">
+            Destinasi
+        </a>
+
+        <a href="#informasi" onclick="tampilHalaman('informasi'); return false;">
+            Informasi
+        </a>
+    </nav>
+
+    <!-- ================= BERANDA ================= -->
+    <main id="beranda" class="halaman aktif">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <h2>Temukan Surga di Indonesia</h2>
+
+                <p>
+                    Dari pantai yang menawan hingga warisan budaya
+                    yang bersejarah, temukan pengalaman wisata
+                    yang tak terlupakan di Nusantara.
+                </p>
+
+                <button class="tombol"
+                        onclick="scrollKe('galeri')">
+                    Jelajahi Keindahan ↓
+                </button>
+            </div>
+        </section>
+
+        <!-- GALERI FOTO -->
+        <section class="container" id="galeri">
+            <div class="judul">
+                <h2>✨ Pesona Nusantara</h2>
+                <p>
+                    Beberapa keindahan Indonesia yang layak
+                    masuk ke daftar perjalananmu.
+                </p>
+            </div>
+
+            <div class="galeri">
+
+                <article class="kartu">
+                    <img
+                        src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700"
+                        alt="Pemandangan Bali">
+
+                    <div class="isi-kartu">
+                        <h3>🏝️ Bali</h3>
+                        <p>
+                            Nikmati panorama pantai, budaya lokal,
+                            dan pemandangan alam yang memukau.
+                        </p>
+                        <button class="tombol"
+                                onclick="tampilHalaman('destinasi')">
+                            Lihat Destinasi
+                        </button>
+                    </div>
+                </article>
+
+                <article class="kartu">
+                    <img
+                        src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=700"
+                        alt="Pemandangan pulau dan laut">
+
+                    <div class="isi-kartu">
+                        <h3>🌊 Raja Ampat</h3>
+                        <p>
+                            Surga bahari dengan gugusan pulau,
+                            air jernih, dan kekayaan bawah laut.
+                        </p>
+                        <button class="tombol"
+                                onclick="tampilHalaman('destinasi')">
+                            Lihat Destinasi
+                        </button>
+                    </div>
+                </article>
+
+                <article class="kartu">
+                    <img
+                        src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=700"
+                        alt="Wisata sejarah Indonesia">
+
+                    <div class="isi-kartu">
+                        <h3>🏛️ Wisata Budaya</h3>
+                        <p>
+                            Kenali sejarah, tradisi, dan peninggalan
+                            budaya yang menjadi kebanggaan Indonesia.
+                        </p>
+                        <button class="tombol"
+                                onclick="tampilHalaman('destinasi')">
+                            Lihat Destinasi
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- AUDIO -->
+        <section class="container">
+            <div class="judul">
+                <h2>🎵 Dengarkan Suasana Wisata</h2>
+                <p>
+                    Nikmati audio pilihan sambil menjelajahi
+                    keindahan Indonesia.
+                </p>
+            </div>
+
+            <div class="media-box">
+                <h3>Musik Relaksasi</h3>
+                <p>Putar audio melalui kontrol di bawah ini.</p>
+
+                <audio controls preload="metadata">
+                    <source src="gamelan.mp3" type="audio/mpeg">
+                    Browser Anda tidak mendukung audio.
+                </audio>
+            </div>
+        </section>
+
+        <!-- VIDEO -->
+        <section class="container">
+            <div class="judul">
+                <h2>🎬 Jelajahi Melalui Video</h2>
+                <p>
+                    Saksikan keindahan destinasi wisata
+                    secara lebih dekat.
+                </p>
+            </div>
+
+            <div class="media-box">
+                <video controls preload="metadata">
+                    <source src="Wonderland.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung video.
+                </video>
+
+                </p>
+            </div>
+        </section>
+
+        <!-- AJAKAN -->
+        <section class="container">
+            <div class="media-box">
+                <h2>Sudah Siap Menjelajah?</h2>
+                <p>
+                    Temukan destinasi favoritmu dan dapatkan
+                    informasi lebih lanjut tentang perjalananmu.
+                </p>
+
+                <button class="tombol"
+                        onclick="tampilHalaman('destinasi')">
+                    Lihat Semua Destinasi
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= DESTINASI ================= -->
+    <main id="destinasi" class="halaman">
+
+        <section class="container">
+            <div class="judul">
+                <h2>Destinasi Wisata Indonesia</h2>
+                <p>
+                    Kenali beberapa destinasi wisata dan kunjungi
+                    portal pariwisata untuk mencari informasi lanjutan.
+                </p>
+            </div>
+
+            <div class="tabel-scroll">
+                <table>
+                    <tr>
+                        <th>No.</th>
+                        <th>Destinasi</th>
+                        <th>Foto</th>
+                        <th>Deskripsi</th>
+                        <th>Informasi Resmi</th>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td><b>Bali</b></td>
+                        <td>
+                            <img
+                                src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400"
+                                alt="Bali">
+                        </td>
+                        <td>
+                            Pulau yang terkenal dengan pantai,
+                            budaya, dan keindahan alam.
+                        </td>
+                        <td>
+                            <a href="https://www.indonesia.travel/"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Indonesia Travel ↗
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td><b>Raja Ampat</b></td>
+                        <td>
+                            <img
+                                src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=400"
+                                alt="Pulau dan laut">
+                        </td>
+                        <td>
+                            Destinasi bahari yang dikenal dengan
+                            pulau-pulau dan keindahan lautnya.
+                        </td>
+                        <td>
+                            <a href="https://www.indonesia.travel/"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Indonesia Travel ↗
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td><b>Borobudur</b></td>
+                        <td>
+                            <img
+                                src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=400"
+                                alt="Wisata budaya">
+                        </td>
+                        <td>
+                            Destinasi sejarah dan budaya
+                            yang menjadi kebanggaan Indonesia.
+                        </td>
+                        <td>
+                            <a href="https://www.indonesia.travel/"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Indonesia Travel ↗
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="kembali-atas">
+                <button class="tombol"
+                        onclick="tampilHalaman('beranda')">
+                    Kembali ke Beranda
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= INFORMASI ================= -->
+    <main id="informasi" class="halaman">
+
+        <section class="container">
+            <div class="judul">
+                <h2>Informasi dan Tips Wisata</h2>
+                <p>
+                    Persiapkan perjalanan agar liburan
+                    lebih nyaman dan menyenangkan.
+                </p>
+            </div>
+
+            <div class="tabel-scroll">
+                <table>
+                    <tr>
+                        <th>No.</th>
+                        <th>Tips Wisata</th>
+                        <th>Keterangan</th>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rencanakan Perjalanan</td>
+                        <td>
+                            Tentukan tujuan, jadwal, dan anggaran
+                            sebelum berangkat.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Jaga Kebersihan</td>
+                        <td>
+                            Buang sampah pada tempatnya dan
+                            jaga kelestarian lingkungan.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Persiapkan Perlengkapan</td>
+                        <td>
+                            Bawa barang sesuai kebutuhan
+                            dan kondisi destinasi.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Cek Informasi Resmi</td>
+                        <td>
+                            Periksa informasi perjalanan melalui
+                            portal pariwisata.
+                            <br><br>
+                            <a href="https://www.indonesia.travel/"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Indonesia Travel ↗
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="kembali-atas">
+                <button class="tombol"
+                        onclick="tampilHalaman('beranda')">
+                    Kembali ke Beranda
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <b>Pesona Wisata Indonesia 🇮🇩</b>
+        <br>
+        Jelajahi Alam, Nikmati Budaya, Ciptakan Kenangan.
+        <br>
+        &copy; 2026 Pesona Wisata Indonesia
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function tampilHalaman(namaHalaman) {
+            var halaman = document.querySelectorAll('.halaman');
+
+            halaman.forEach(function (item) {
+                item.classList.remove('aktif');
+            });
+
+            document.getElementById(namaHalaman)
+                    .classList.add('aktif');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollKe(id) {
+            document.getElementById(id).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+</html>
